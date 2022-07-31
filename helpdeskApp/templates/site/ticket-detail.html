@@ -1,0 +1,84 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block title %}Tickets{% endblock %}
+
+{% block content %}
+    <div id="ticket-detail">
+        <div class="container">
+            <h1>Ticket №{{ ticket.pk }} details</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card border-primary mb-3">
+                        <div class="card-header bg-white">Ticket created by: <strong>{{ ticket.user.first_name }} {{ ticket.user.last_name }}</strong></div>
+                        <div class="card-body">
+                            <p class="card-text">Date & time: <strong>{{ticket.ticketDate|date:"d.m.Y | h:m" }}</strong></p>
+                            <p class="card-text">Department: <strong>{{ ticket.department }}</strong></p>
+                            <p class="card-text">Cabinet №: <strong>{{ ticket.department.cabinetNumber }}</strong></p>
+                            <p class="card-text">Phone number: <strong><a href="#">+7{{ ticket.phoneNumber }}</a></strong></p>
+                            <p class="card-text">Problem: <strong>{{ ticket.problemDescription }}</strong></p>
+                            <p class="card-text">Photo:</p>
+                            <div class="card border-primary mb-3">
+                                <div class="card-body w-100">
+                                    {% if post.image %}
+                                    <img src="{{ ticket.photo.url }}" width="100%" alt="">
+                                    {% else %}
+                                    <div class="alert alert-warning">No photos</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-success">
+                        <div class="my-3 p-3 rounded">
+                            <h6 class="pb-2 mb-0">Comment</h6>
+                            <div class="d-flex text-muted pt-3">
+                              <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                              <p class="pb-3 mb-0 small lh-sm">
+                                <strong class="d-block text-gray-dark">@username</strong>
+                                Some representative placeholder content, with some information about this user. Imagine this being some sort of status update, perhaps?
+                              </p>
+                            </div>
+                            <small class="d-block text-end mt-3">
+                              <a href="#">Add comment</a>
+                            </small>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-primary mb-3">
+                        {% if user.is_superuser %}
+                        <div class="card-header bg-white text-center"><strong>Status</strong></div>
+                        <div class="card-body">
+                            <div class="d-grid">
+                                {% if ticket.isActive %}
+                                <span class="alert bg-warning text-center">Active</span>
+                                {% else %}
+                                <span class="alert bg-success text-white text-center">Closed</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card-header bg-white text-center"><strong>Status</strong></div>
+                        <div class="card-body">
+                            <div class="d-grid mb-1">
+                                {% if ticket.isActive %}
+                                <span class="alert bg-warning text-center">Active</span>
+                                {% else %}
+                                <span class="alert bg-success text-white text-center">Closed</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="d-grid">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Close ticket</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+.brand {
+    padding: 0.3125rem 0;
+    margin-right: 1rem;
+    white-space: nowrap;
+}
+.brand img {
+    width: 120px;
+}
+#main {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+.image-container {
+    text-align: center;
+}
+.image-container img {
+    width: 75%;
+    transform: scaleX(-1);
+}
+#main .content {
+    position: relative;
+    top: 80px;
+}
+#main h1 {
+    color: #116df6;
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+#main p {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+#tickets, #ticket-detail, #user {
+    padding: 90px 0;
+}
+#tickets h1, #ticket-detail h1, #user h1 {
+    text-align: center;
+    color: #116df6;
+    margin-bottom: 40px;
+}

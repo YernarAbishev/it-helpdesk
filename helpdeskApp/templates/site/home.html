@@ -1,0 +1,30 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+<div id="main">
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert alert-primary text-center alert-dismissible fade show" role="alert" style="width: 30%; margin: auto;">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content">
+                        <h1>Welcome to IT Helpdesk</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, veniam soluta pariatur necessitatibus omnis, tempore consequuntur animi commodi quaerat harum non distinctio ipsum, corporis repellendus minima et unde excepturi suscipit.</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg">Get help</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="image-container">
+                        <img src="{% static 'img/main.svg' %}" alt="Main">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
